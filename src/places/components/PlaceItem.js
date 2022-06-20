@@ -16,7 +16,8 @@ const PlaceItem = (props) => {
   const showDeteleWarningHandler = () => setShowConfirmModal(true);
   const cancelDeleteHandler = () => setShowConfirmModal(false);
   const confirmDeleteHandler = () => {
-    console.log("delete");
+    setShowConfirmModal(false);
+    console.log("DELETING...");
   };
   return (
     <React.Fragment>
@@ -39,8 +40,8 @@ const PlaceItem = (props) => {
         footerClass="place-item__modal-actions"
         footer={
           <React.Fragment>
-            <Button onClick={closeMapHandler}>CANCEL</Button>
-            <Button onClick={closeMapHandler}>DELETE</Button>
+            <Button onClick={cancelDeleteHandler}>CANCEL</Button>
+            <Button onClick={confirmDeleteHandler}>DELETE</Button>
           </React.Fragment>
         }
       >
@@ -64,7 +65,9 @@ const PlaceItem = (props) => {
               VIEW ON MAP
             </Button>
             <Button to={`/places/${props.id}`}>EDIT</Button>
-            <Button danger>DELETE</Button>
+            <Button danger onClick={showDeteleWarningHandler}>
+              DELETE
+            </Button>
           </div>
         </Card>
       </li>
