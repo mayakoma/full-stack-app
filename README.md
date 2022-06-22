@@ -4,6 +4,6 @@ in this project I use:
 <ul>
 <li>Frontend- React</li>
 <li>Backend- Node js, Express, MongoDB</li>
-  </ul>
+  </ul></br>
 I hope you like it :)
 
