@@ -3,8 +3,15 @@ const bodyParser = require("body-parser");
 const placesRouter = require("./routers/places-router");
 
 const app = express();
-app.use(placesRouter);
 
+app.use("/api/places", placesRouter); //=>   /api/places...
+app.use((error, req, res, next) => {
+  if (res.headerSent) {
+    return next(error);
+  }
+  res.status(error.code || 500);
+  res.json({ message: error.message || "An unknown error occurred!" });
+});
 app.listen(5000, () => {
   console.log("listen port 5000");
 });
