@@ -61,7 +61,6 @@ const createPlace = async (req, res, next) => {
     return next(error);
   }
 
-  // const title = req.body.title;
   const createdPlace = {
     id: uuid(),
     title,
@@ -71,7 +70,7 @@ const createPlace = async (req, res, next) => {
     creator,
   };
 
-  DUMMY_PLACES.push(createdPlace); //unshift(createdPlace)
+  DUMMY_PLACES.push(createdPlace);
 
   res.status(201).json({ place: createdPlace });
 };
