@@ -28,7 +28,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://mayakoma:mayakoma7@cluster0.d2bbxou.mongodb.net/Places?retryWrites=true&w=majority"
+    "mongodb+srv://mayakoma:mayakoma7@cluster0.d2bbxou.mongodb.net/mern?retryWrites=true&w=majority"
   )
   .then(() => {
     app.listen(5000, () => {
