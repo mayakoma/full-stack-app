@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const placesRouter = require("./routers/places-router");
 const usersRouter = require("./routers/users-routers");
 const HttpError = require("./models/http-error");
+const mongoose = require("mongoose");
 
 const app = express();
 
@@ -25,6 +26,15 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || "An unknown error occurred!" });
 });
 
-app.listen(5000, () => {
-  console.log("listen port 5000");
-});
+mongoose
+  .connect(
+    "mongodb+srv://mayakoma:mayakoma7@cluster0.d2bbxou.mongodb.net/Places?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    app.listen(5000, () => {
+      console.log("listen port 5000");
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
