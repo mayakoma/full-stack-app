@@ -74,7 +74,9 @@ const login = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(200).json({ message: "login" });
+  res
+    .status(200)
+    .json({ message: "login", user: existingUser.toObject({ getters: true }) });
 };
 
 exports.getUsers = getUsers;
