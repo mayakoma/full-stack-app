@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import Button from "./Button";
-
 import "./ImageUpload.css";
 
 const ImageUpload = (props) => {
@@ -9,10 +8,12 @@ const ImageUpload = (props) => {
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
 
-  const filePickRef = useRef();
+  const filePickerRef = useRef();
 
   useEffect(() => {
-    if (!file) return;
+    if (!file) {
+      return;
+    }
     const fileReader = new FileReader();
     fileReader.onload = () => {
       setPreviewUrl(fileReader.result);
@@ -36,14 +37,14 @@ const ImageUpload = (props) => {
   };
 
   const pickImageHandler = () => {
-    filePickRef.current.click();
+    filePickerRef.current.click();
   };
 
   return (
     <div className="form-control">
       <input
         id={props.id}
-        ref={filePickRef}
+        ref={filePickerRef}
         style={{ display: "none" }}
         type="file"
         accept=".jpg,.png,.jpeg"
@@ -52,7 +53,7 @@ const ImageUpload = (props) => {
       <div className={`image-upload ${props.center && "center"}`}>
         <div className="image-upload__preview">
           {previewUrl && <img src={previewUrl} alt="Preview" />}
-          {!previewUrl && <p>please pick an image</p>}
+          {!previewUrl && <p>Please pick an image.</p>}
         </div>
         <Button type="button" onClick={pickImageHandler}>
           PICK IMAGE
