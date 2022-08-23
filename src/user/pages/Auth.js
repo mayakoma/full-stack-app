@@ -80,14 +80,14 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {}
     } else {
       try {
         const formData = new FormData();
         formData.append("email", formState.inputs.email.value);
-        formData.append("password", formState.inputs.password.value);
         formData.append("name", formState.inputs.name.value);
+        formData.append("password", formState.inputs.password.value);
         formData.append("image", formState.inputs.image.value);
         const responseData = await sendRequest(
           "http://localhost:5000/api/users/signup",
@@ -95,7 +95,7 @@ const Auth = () => {
           formData
         );
 
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {}
     }
   };
@@ -124,7 +124,7 @@ const Auth = () => {
               center
               id="image"
               onInput={inputHandler}
-              errorText="please provide an image"
+              errorText="Please provide an image."
             />
           )}
           <Input
